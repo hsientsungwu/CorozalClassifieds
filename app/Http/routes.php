@@ -20,11 +20,16 @@ Route::get('/', function () {
 Route::get('/subscribe', function() {
 	// display subscribe form
 	// record source: facebook, organic
-	return view('subscribe');
-});
+	return view('subscribe', [
+		'action' => 'subscribe'
+	]);
+});	
 
-Route::post('/subscribe', function() {
+Route::get('/request', function() {
 	// add member to mailgun
+	return view('subscribe', [
+		'action' => 'request'
+	]);
 });
 
 Route::get('/unsubscribe', function() {
