@@ -6,7 +6,13 @@
     <div class="container">
     	<div class="row">
     		<div class="col-xs-12 col-sm-8 col-md-6 col-sm-offset-2 col-md-offset-3">
-    			<h1 class="text-center">Corozal Classifieds</h1>
+    			<h1 class="text-center">
+    				@if ($action == 'request')
+    					Join Corozal Classifieds
+    				@else
+    					Weekly Newsletter Signup
+    				@endif
+    			</h1>
     		</div>
     	</div>
 		<div class="row">
