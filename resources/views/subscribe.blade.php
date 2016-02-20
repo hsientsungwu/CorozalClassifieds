@@ -1,6 +1,6 @@
 @extends('layout.master')
 
-@section('title', 'Subscribe')
+@section('title', ($action == 'request' ? 'Join Group' : 'Sign Up Newsletter'))
 
 @section('styles')
 	<style>
@@ -98,33 +98,42 @@
 		<div class="row">
 		    <div class="col-xs-12 col-sm-8 col-md-6 col-sm-offset-2 col-md-offset-3">
 				<form role="form" method="post">
-					<h2><small>
+					<h2 class="text-center"><small>
 						@if ($action == 'request')
 							Request to join Corozal Classifieds Facebook Group
 						@else 
-							Sign up for Corozal Classifieds' weekly newsletter
+							Sign up for Corozal Classifieds' Weekly newsletter
 						@endif
 					</small></h2>
+
+					@include('errors.errors')
+
 					<hr class="colorgraph">
 					<div class="row">
 						<div class="col-xs-12 col-sm-6 col-md-6">
 							<div class="form-group">
-		                        <input type="text" name="first_name" id="first_name" class="form-control input-lg" placeholder="First Name" tabindex="1">
+		                        <input type="text" name="first_name" id="first_name" class="form-control input-lg" placeholder="First Name" tabindex="1" value="">
 							</div>
 						</div>
 						<div class="col-xs-12 col-sm-6 col-md-6">
 							<div class="form-group">
-								<input type="text" name="last_name" id="last_name" class="form-control input-lg" placeholder="Last Name" tabindex="2">
+								<input type="text" name="last_name" id="last_name" class="form-control input-lg" placeholder="Last Name" tabindex="2" value="">
 							</div>
 						</div>
 					</div>
 
+					@if ($action == 'request')
+						<div class="form-group">
+							<input type="text" name="facebook_name" id="facebook_name" class="form-control input-lg" placeholder="Facebook Name (Case Sensitive)" tabindex="3" value="">
+						</div>
+					@endif
+
 					<div class="form-group">
-						<input type="email" name="email" id="email" class="form-control input-lg" placeholder="Email Address" tabindex="3">
+						<input type="email" name="email" id="email" class="form-control input-lg" placeholder="Email Address" tabindex="4" value="">
 					</div>
 
 					<div class="form-group">
-						<select id="district" name="district" class="form-control input-lg" tabindex="4">
+						<select id="district" name="district" class="form-control input-lg" tabindex="5">
 							<option value="">District you Reside</option>
 							<option value="Belize">Belize</option>
 							<option value="Cayo">Cayo</option>
@@ -138,20 +147,33 @@
 					</div>
 
 					@if ($action == 'request')
-						<div class="row">
+						<div class="row form-group">
 							<div class="col-xs-4 col-sm-3 col-md-3">
 								<span class="button-checkbox">
 									<button type="button" class="btn" data-color="info" tabindex="5"> I would like to receive Corozal Classifieds weekly newsletter</button>
-			                        <input type="checkbox" name="t_and_c" id="t_and_c" class="hidden" value="1">
+			                        <input type="checkbox" name="subscribe" id="subscribe" class="hidden" value="1">
 								</span>
 							</div>
 						</div>
 					@endif
+
+					<div class="row form-group">
+						<div class="col-xs-12 col-sm-6 col-md-6">
+							{!! Recaptcha::render() !!}
+						</div>
+					</div>
 					
 					<hr class="colorgraph">
-					<div class="row">
+					<div class="row form-group">
+						{{ csrf_field() }}
 						<input type="hidden" name="action" value="{{ $action }}" >
-						<div class="col-xs-12 col-md-6"><input type="submit" value="{{ $action == "request" ? 'Join Group' : 'Sign Up' }}" class="btn btn-primary btn-block btn-lg" tabindex="7"></div>
+						<div class="col-xs-12 col-md-12"><input type="submit" value="{{ $action == "request" ? 'Join Group' : 'Sign Up' }}" class="btn btn-primary btn-block btn-lg" tabindex="7"></div>
+					</div>
+
+					<div class="row">
+						<div class="text-center">
+							<a href="/">Back to Corozal Classifieds</a>
+						</div>
 					</div>
 				</form>
 			</div>

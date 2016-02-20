@@ -17,24 +17,6 @@ Route::get('/', function () {
     return redirect('https://www.facebook.com/groups/corozalclassified/');
 });
 
-Route::get('/subscribe', function() {
-	// display subscribe form
-	// record source: facebook, organic
-	return view('subscribe', [
-		'action' => 'subscribe'
-	]);
-});	
-
-Route::get('/request', function() {
-	// add member to mailgun
-	return view('subscribe', [
-		'action' => 'request'
-	]);
-});
-
-Route::get('/unsubscribe', function() {
-	// remove user from mailgun
-});
 
 /*
 |--------------------------------------------------------------------------
@@ -48,5 +30,11 @@ Route::get('/unsubscribe', function() {
 */
 
 Route::group(['middleware' => ['web']], function () {
-    //
+    Route::get('/subscribe', ['as' => 'subscribeForm', 'uses' => 'HomeController@subscribe']);
+    Route::get('/request', ['as' => 'requestForm', 'uses' => 'HomeController@request']);
+    Route::post('/subscribe', 'HomeController@postSubscribe');
+	Route::post('/request', 'HomeController@postRequest');
+	Route::get('/unsubscribe', function() {
+		// remove user from mailgun
+	});
 });
