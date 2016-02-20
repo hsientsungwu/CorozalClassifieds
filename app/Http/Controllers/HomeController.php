@@ -82,6 +82,7 @@ class HomeController extends Controller
         ]);
 
         if (is_object($new_member)) {
+            $this->notify_admin_new_member($inputs['email']);
             Log::info('New user has just subscribed to CC Weekly Newsletter - ' . $inputs['email']);
 
             return true;
@@ -90,5 +91,9 @@ class HomeController extends Controller
 
             return false;
         }
+    }
+
+    public function notify_admin_new_member($email) {
+        // notify corozalclassifieds@gmail.com
     }
 }
