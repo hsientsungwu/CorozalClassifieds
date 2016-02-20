@@ -27,10 +27,15 @@
     					Thank you for signing up with Corozal Classifieds Weekly Newsletter.
     				@endif
     			</div>
-                <br>
                 <div>Help us to spread our name out there by clicking the button below!</div>
     		</div>
     	</div>
+
+        <div class="row">
+            <div class="text-center">
+                <a href="/">Back to Corozal Classifieds</a>
+            </div>
+        </div>
 
         <div class="row" style="margin-top:110px;">
             <div class="text-center">
@@ -49,10 +54,5 @@
                 </div> <br>
             </div>
         </div>
-    	<div class="row">
-			<div class="text-center">
-				<a href="/">Back to Corozal Classifieds</a>
-			</div>
-		</div>
     </div>
 @endsection
