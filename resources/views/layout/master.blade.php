@@ -1,6 +1,28 @@
 <html>
     <head>
         <title>@yield('title') - Corozal Classifieds</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <!-- for Google -->
+        <meta name="description" content="Corozal Classifieds - sign up for our weekly newsletter or join our Facebook group to receive most recently sell items in the country of Belize!" />
+        <meta name="keywords" content="Corozal Classifieds, Corozal District, Belize, Corozal Town, Belize Buy and Sell, Belize Trade, Corozal Trade, Used item in Belize, Second Hand in Corozal, Second Hand in Belize, Used item in Corozal" />
+
+        <meta name="author" content="Hsien Tsung Wu" />
+        <meta name="copyright" content="" />
+        <meta name="application-name" content="Corozal Classifieds" />
+
+        <!-- for Facebook -->          
+        <meta property="og:title" content="Corozal Classifieds" />
+        <meta property="og:type" content="website" />
+        <meta property="og:image" content="{{ asset('/img/cc_logo_250x250.png') }}" />
+        <meta property="og:url" content="{{ url('/') }}" />
+        <meta property="og:description" content="Corozal Classifieds - sign up for our weekly newsletter or join our Facebook group to receive most recently sell items in the country of Belize!" />
+
+        <!-- for Twitter -->          
+        <meta name="twitter:card" content="summary" />
+        <meta name="twitter:title" content="Corozal Classifieds" />
+        <meta name="twitter:description" content="Corozal Classifieds - sign up for our weekly newsletter or join our Facebook group to receive most recently sell items in the country of Belize!" />
+        <meta name="twitter:image" content="{{ asset('/img/cc_logo_250x250.png') }}" />
 
         <link rel="icon" href="/img/favicon.ico">
         <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">

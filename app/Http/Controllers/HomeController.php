@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 
 use Log;
 use Mailgun;
+use Mail;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
@@ -88,7 +89,7 @@ class HomeController extends Controller
         ]);
 
         if (is_object($new_member)) {
-            $this->notify_admin_new_member($inputs['email']);
+            $this->notify_admin_new_member($inputs);
             Log::info('New user has just subscribed to CC Weekly Newsletter - ' . $inputs['email']);
 
             return true;
@@ -99,7 +100,9 @@ class HomeController extends Controller
         }
     }
 
-    public function notify_admin_new_member($email) {
-        // notify corozalclassifieds@gmail.com
+    public function notify_admin_new_member($inputs) {
+        Mail::send('mail.admin.notify_new_member', ['inputs' => $inputs], function ($m) use ($inputs) {
+            $m->to('corozalclassifieds@gmail.com')->subject('New Request/Subscription from corozalclassifieds.com');
+        });
     }
 }
