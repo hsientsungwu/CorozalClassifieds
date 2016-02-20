@@ -15,6 +15,7 @@ class HomeController extends Controller
 {
     public function subscribe() {
 		// record source: facebook, organic
+        session()->put('referrer', url()->previous());
 
 		// display subscribe form
 		return view('subscribe', [
@@ -30,6 +31,8 @@ class HomeController extends Controller
             $inputs['subscribe'] = true;
         }
 
+        $inputs['referrer'] = (session()->has('users') ? session('referrer') : '');
+
         $added = $this->add_member($inputs);
 
         if ($added) {
@@ -44,7 +47,8 @@ class HomeController extends Controller
 
     public function request() {
     	// record source: facebook, organic
-    	
+    	session()->put('referrer', url()->previous());
+
     	// display subscribe form
 		return view('subscribe', [
 			'action' => 'request',
@@ -52,13 +56,15 @@ class HomeController extends Controller
     }
 
     public function postRequest(CreateMemberRequest $request) {
-         $inputs = $request->all();
+        $inputs = $request->all();
 
-         if (!array_key_exists('subscribe', $inputs)) {
+        if (!array_key_exists('subscribe', $inputs)) {
             $inputs['subscribe'] = false;
-         }
+        }
 
-         $added = $this->add_member($inputs);
+        $inputs['referrer'] = (session()->has('users') ? session('referrer') : '');
+         
+        $added = $this->add_member($inputs);
 
         if ($added) {
             // send subscribe success email
@@ -76,7 +82,7 @@ class HomeController extends Controller
         $new_member = $list->addMember([
             'address' => $inputs['email'],
             'name' => $inputs['first_name'] . ' ' . $inputs['last_name'],
-            'vars' => ['district' => $inputs['district'], 'facebook_name' => $inputs['facebook_name']],
+            'vars' => ['district' => $inputs['district'], 'facebook_name' => $inputs['facebook_name'], 'referrer' => $inputs['referrer']],
             'subscribed' => $inputs['subscribe'],
             'upsert' => true,
         ]);
