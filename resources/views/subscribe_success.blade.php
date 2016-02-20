@@ -2,6 +2,8 @@
 
 @section('title', ($action == 'request' ? 'Thank you for Joining' : 'Thank you for Signing Up'))
 
+@section('url', url()->current())
+
 @section('styles')
     <link rel="stylesheet" href="https://netlify.scdn4.secure.raxcdn.com/css/34571ca2ffb416eeb125ab4fc2850add8cf8fd04/share-button.min.css">
 @endsection

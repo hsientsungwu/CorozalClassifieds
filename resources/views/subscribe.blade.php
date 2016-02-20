@@ -2,6 +2,8 @@
 
 @section('title', ($action == 'request' ? 'Join Group' : 'Sign Up Newsletter'))
 
+@section('url', url()->current())
+
 @section('content')
     <div class="container">
     	<div class="row">

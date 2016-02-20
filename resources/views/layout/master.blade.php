@@ -15,7 +15,7 @@
         <meta property="og:title" content="Corozal Classifieds" />
         <meta property="og:type" content="website" />
         <meta property="og:image" content="{{ asset('/img/cc_logo_250x250.png') }}" />
-        <meta property="og:url" content="{{ url('/') }}" />
+        <meta property="og:url" content="@yield('url')" />
         <meta property="og:description" content="Corozal Classifieds - sign up for our weekly newsletter or join our Facebook group to receive most recently sell items in the country of Belize!" />
 
         <!-- for Twitter -->          
