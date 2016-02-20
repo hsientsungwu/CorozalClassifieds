@@ -97,7 +97,7 @@
     	</div>
 		<div class="row">
 		    <div class="col-xs-12 col-sm-8 col-md-6 col-sm-offset-2 col-md-offset-3">
-				<form role="form" method="post">
+		    	{!! Form::open(['role' => 'form', 'method' => 'post']) !!}
 					<h2 class="text-center"><small>
 						@if ($action == 'request')
 							Request to join Corozal Classifieds Facebook Group
@@ -112,38 +112,39 @@
 					<div class="row">
 						<div class="col-xs-12 col-sm-6 col-md-6">
 							<div class="form-group">
-		                        <input type="text" name="first_name" id="first_name" class="form-control input-lg" placeholder="First Name" tabindex="1" value="">
+								{!! Form::text('first_name', null, ['id' => 'first_name', 'class' => 'form-control input-lg', 'placeholder' => 'First Name', 'tabindex' => '1']) !!}
 							</div>
 						</div>
 						<div class="col-xs-12 col-sm-6 col-md-6">
 							<div class="form-group">
-								<input type="text" name="last_name" id="last_name" class="form-control input-lg" placeholder="Last Name" tabindex="2" value="">
+								{!! Form::text('last_name', null, ['id' => 'last_name', 'class' => 'form-control input-lg', 'placeholder' => 'Last Name', 'tabindex' => '2']) !!}
 							</div>
 						</div>
 					</div>
 
 					@if ($action == 'request')
 						<div class="form-group">
-							<input type="text" name="facebook_name" id="facebook_name" class="form-control input-lg" placeholder="Facebook Name (Case Sensitive)" tabindex="3" value="">
+							{!! Form::text('facebook_name', null, ['id' => 'facebook_name', 'class' => 'form-control input-lg', 'placeholder' => 'Facebook Name', 'tabindex' => '3']) !!}
 						</div>
 					@endif
 
 					<div class="form-group">
-						<input type="email" name="email" id="email" class="form-control input-lg" placeholder="Email Address" tabindex="4" value="">
+						{!! Form::email('email', null, ['id' => 'email', 'class' => 'form-control input-lg', 'placeholder' => 'Email Address', 'tabindex' => '4']) !!}
 					</div>
 
 					<div class="form-group">
-						<select id="district" name="district" class="form-control input-lg" tabindex="5">
-							<option value="">District you Reside</option>
-							<option value="Belize">Belize</option>
-							<option value="Cayo">Cayo</option>
-							<option value="Corozal">Corozal</option>
-							<option value="Orange Walk">Orange Walk</option>
-							<option value="San Pedro">San Pedro</option>
-							<option value="Stann Creek">Stann Creek</option>
-							<option value="Toledo">Toledo</option>
-							<option value="Outside of Belize">Outside of Belize</option>
-						</select>
+						{!! Form::select('district', [
+							'Belize' => 'Belize',
+							'Cayo' => 'Cayo',
+							'Corozal' => 'Corozal',
+							'Orange Walk' => 'Orange Walk',
+							'San Pedro' => 'San Pedro',
+							'Stann Creek' => 'Stann Creek',
+							'Toledo' => 'Toledo',
+							'Outside of Belize' => 'Outside of Belize',
+						],
+						null, ['id' => 'district', 'class' => 'form-control input-lg', 'tabindex' => '5', 'placeholder' => 'Select a District you live in ...']
+						) !!}
 					</div>
 
 					@if ($action == 'request')
@@ -151,7 +152,7 @@
 							<div class="col-xs-4 col-sm-3 col-md-3">
 								<span class="button-checkbox">
 									<button type="button" class="btn" data-color="info" tabindex="5"> I would like to receive Corozal Classifieds weekly newsletter</button>
-			                        <input type="checkbox" name="subscribe" id="subscribe" class="hidden" value="1">
+									{!! Form::checkbox('subscribe', '1', false, ['id' => 'subscribe', 'class' => 'hidden'] ) !!}
 								</span>
 							</div>
 						</div>
@@ -166,7 +167,8 @@
 					<hr class="colorgraph">
 					<div class="row form-group">
 						{{ csrf_field() }}
-						<input type="hidden" name="action" value="{{ $action }}" >
+						{!! Form::hidden('action', $action) !!}
+
 						<div class="col-xs-12 col-md-12"><input type="submit" value="{{ $action == "request" ? 'Join Group' : 'Sign Up' }}" class="btn btn-primary btn-block btn-lg" tabindex="7"></div>
 					</div>
 
@@ -175,7 +177,7 @@
 							<a href="/">Back to Corozal Classifieds</a>
 						</div>
 					</div>
-				</form>
+				{!! Form::close() !!}
 			</div>
 		</div>
 	</div>
