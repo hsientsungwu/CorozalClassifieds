@@ -16,7 +16,8 @@ $(document).ready(function() {
         enabled: true  // Enable Twitter. [Default: true]
       },
       facebook: {
-        enabled: true  // Enable Facebook. [Default: true]
+        enabled: true,  // Enable Facebook. [Default: true]
+        appId: '111031405954220',
       },
       pinterest: {
         enabled: false
