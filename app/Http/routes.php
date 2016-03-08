@@ -14,6 +14,8 @@
 Route::get('/', function () {
 	// redirect user to facebook group
 	// record pageview visit
+	
+	return view('home');
     return redirect('https://www.facebook.com/groups/corozalclassified/');
 });
 
