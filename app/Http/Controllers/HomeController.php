@@ -14,12 +14,12 @@ use App\Http\Requests\CreateMemberRequest;
 
 class HomeController extends Controller
 {
-    public function subscribe() {
+    public function subscribe(Request $request) {
 		// record source: facebook, organic
-        session()->put('referrer', url()->previous());
+        session()->put('referrer', $request->server('HTTP_REFERER'));
 
 		// display subscribe form
-		return view('subscribe', [
+		return view('subscribe', [ 
 			'action' => 'subscribe'
 		]);
     }
@@ -37,6 +37,9 @@ class HomeController extends Controller
         $added = $this->add_member($inputs);
 
         if ($added) {
+            $log_msg = "A user has just subscribed to Corozal Classifieds Newsletter. (" . $inputs['first_name'] . " " . $inputs['last_name'] . ")";
+            Log::info($log_msg, ['data' => $inputs]);
+
             // send subscribe success email
         }
         
@@ -46,9 +49,9 @@ class HomeController extends Controller
         ]);
     }
 
-    public function request() {
+    public function request(Request $request) {
     	// record source: facebook, organic
-    	session()->put('referrer', url()->previous());
+    	session()->put('referrer', $request->server('HTTP_REFERER'));
 
     	// display subscribe form
 		return view('subscribe', [
@@ -68,6 +71,9 @@ class HomeController extends Controller
         $added = $this->add_member($inputs);
 
         if ($added) {
+            $log_msg = "A user has just requested to join Corozal Classifieds Facebook Group. (" . $inputs['first_name'] . " " . $inputs['last_name'] . ")";
+            Log::info($log_msg, ['data' => $inputs]);
+
             // send subscribe success email
         }
 

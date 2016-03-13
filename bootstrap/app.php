@@ -41,6 +41,11 @@ $app->singleton(
     App\Exceptions\Handler::class
 );
 
+$app->configureMonologUsing(function($monolog) {
+	$slackHandler = new \Monolog\Handler\SlackHandler(env('SLACK_TOKEN'), '#corozalclassifieds', 'Monolog', true, null, Monolog\Logger::INFO, true);
+	$monolog->pushHandler($slackHandler);
+});
+
 /*
 |--------------------------------------------------------------------------
 | Return The Application
